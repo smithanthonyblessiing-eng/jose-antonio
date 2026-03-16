@@ -132,6 +132,20 @@ const HeroSection = () => {
 
       <div className="container relative mx-auto px-6">
         <div className="flex flex-col items-center text-center">
+          {/* Profile photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <img
+              src={profileImg}
+              alt="José Antonio Gómez"
+              className="h-32 w-32 rounded-full border-4 border-accent/40 object-cover shadow-lg md:h-40 md:w-40"
+            />
+          </motion.div>
+
           {/* Profile badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
