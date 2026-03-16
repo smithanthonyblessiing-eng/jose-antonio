@@ -142,7 +142,7 @@ const HeroSection = () => {
             <img
               src={profileImg}
               alt="José Antonio Gómez"
-              className="h-32 w-32 rounded-full border-4 border-accent/40 object-cover shadow-lg md:h-40 md:w-40"
+              className="h-40 w-40 rounded-full border-4 border-accent/40 object-cover shadow-lg md:h-52 md:w-52"
             />
           </motion.div>
 
