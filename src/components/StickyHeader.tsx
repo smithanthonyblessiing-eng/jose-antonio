@@ -18,9 +18,12 @@ const StickyHeader = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-3 px-6">
-        <span className="font-display text-lg font-bold text-primary">
-          José Antonio Gómez
-        </span>
+        <div className="flex items-center gap-3">
+          <img src={profileImg} alt="José Antonio Gómez" className="h-8 w-8 rounded-full object-cover" />
+          <span className="font-display text-lg font-bold text-primary">
+            José Antonio Gómez
+          </span>
+        </div>
         <a
           href="/resume/Resume_Jose_Antonio_Gomez.pdf"
           download
