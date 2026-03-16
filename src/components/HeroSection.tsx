@@ -63,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-5 max-w-xl font-body text-base leading-relaxed text-primary-foreground/70 md:text-lg"
+            className="mt-5 max-w-3xl font-body text-base leading-relaxed text-primary-foreground/70 md:text-lg"
           >
             20+ years of experience in agro-industrial and financial services.
             Proven track record in P&L management, EBITDA growth, and opening
