@@ -1,12 +1,125 @@
 import { Download, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import headshot from "@/assets/headshot.jpg";
+import { useEffect, useRef } from "react";
+
+const NODE_COUNT = 40;
+const CONNECTION_DIST = 140;
+
+function drawMesh(canvas: HTMLCanvasElement) {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const w = canvas.width;
+  const h = canvas.height;
+  const dpr = window.devicePixelRatio || 1;
+
+  // Generate nodes with random positions and slow velocities
+  const nodes = Array.from({ length: NODE_COUNT }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    vx: (Math.random() - 0.5) * 0.3 * dpr,
+    vy: (Math.random() - 0.5) * 0.3 * dpr,
+    r: (1.2 + Math.random() * 1.8) * dpr,
+  }));
+
+  const connDist = CONNECTION_DIST * dpr;
+
+  let animId: number;
+
+  function frame() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, w, h);
+
+    // Update positions
+    for (const n of nodes) {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > w) n.vx *= -1;
+      if (n.y < 0 || n.y > h) n.vy *= -1;
+    }
+
+    // Draw connections
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < connDist) {
+          const alpha = (1 - dist / connDist) * 0.25;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `hsla(199, 89%, 48%, ${alpha})`;
+          ctx.lineWidth = 0.7 * dpr;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw glowing nodes
+    for (const n of nodes) {
+      // Glow
+      const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4);
+      grad.addColorStop(0, "hsla(199, 89%, 48%, 0.35)");
+      grad.addColorStop(1, "hsla(199, 89%, 48%, 0)");
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 4, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = "hsla(199, 89%, 48%, 0.7)";
+      ctx.fill();
+    }
+
+    animId = requestAnimationFrame(frame);
+  }
+
+  frame();
+
+  return () => cancelAnimationFrame(animId);
+}
 
 const HeroSection = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const resize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.parentElement!.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+    };
+
+    resize();
+    const cleanup = drawMesh(canvas);
+    window.addEventListener("resize", resize);
+
+    return () => {
+      cleanup?.();
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-primary py-20 md:py-28 lg:py-32">
+      {/* Digital mesh canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+      />
+
       {/* Subtle star-like pattern */}
-      <div className="absolute inset-0 opacity-[0.07]">
+      <div className="absolute inset-0 opacity-[0.05]">
         <div
           className="h-full w-full"
           style={{
