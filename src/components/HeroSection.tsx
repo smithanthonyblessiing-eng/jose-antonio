@@ -1,6 +1,6 @@
 import { Download, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
-import headshot from "@/assets/headshot.jpg";
+import profileImg from "@/assets/profile.jpg";
 import { useEffect, useRef } from "react";
 
 const NODE_COUNT = 40;

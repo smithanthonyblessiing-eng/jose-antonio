@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Download } from "lucide-react";
+import profileImg from "@/assets/profile.jpg";
 
 const StickyHeader = () => {
   const [visible, setVisible] = useState(false);
