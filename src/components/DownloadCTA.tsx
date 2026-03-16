@@ -22,7 +22,7 @@ const DownloadCTA = () => {
           <a
             href="/resume/Resume_Jose_Antonio_Gomez.pdf"
             download
-            className="inline-flex items-center gap-2 rounded-md bg-accent px-8 py-3.5 font-body text-sm font-semibold text-accent-foreground shadow-lg transition-all hover:bg-accent/90 hover:shadow-xl"
+            className="inline-flex items-center gap-2 rounded-md bg-accent px-8 py-3.5 font-body text-sm font-semibold text-accent-foreground shadow-lg transition-all hover:bg-accent/90 hover:shadow-xl animate-pulse-slow"
           >
             <Download size={18} />
             Download Full CV (PDF)
