@@ -1,6 +1,6 @@
 import { Download, MapPin, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
-import headshot from "@/assets/headshot.jpg";
+import profileImg from "@/assets/profile.jpg";
 import { useEffect, useRef } from "react";
 
 const NODE_COUNT = 40;
@@ -132,6 +132,20 @@ const HeroSection = () => {
 
       <div className="container relative mx-auto px-6">
         <div className="flex flex-col items-center text-center">
+          {/* Profile photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <img
+              src={profileImg}
+              alt="José Antonio Gómez"
+              className="h-32 w-32 rounded-full border-4 border-accent/40 object-cover shadow-lg md:h-40 md:w-40"
+            />
+          </motion.div>
+
           {/* Profile badge */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -214,7 +228,7 @@ const HeroSection = () => {
             <a
               href="/resume/Resume_Jose_Antonio_Gomez.pdf"
               download
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 font-body text-sm font-semibold text-accent-foreground shadow-lg transition-all hover:bg-accent/90 hover:shadow-xl"
+              className="inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 font-body text-sm font-semibold text-accent-foreground shadow-lg transition-all hover:bg-accent/90 hover:shadow-xl animate-pulse-slow"
             >
               <Download size={18} />
               Download CV
