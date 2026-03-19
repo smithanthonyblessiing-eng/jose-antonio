@@ -234,7 +234,7 @@ const HeroSection = () => {
               Download CV
             </a>
             <a
-              href="https://www.linkedin.com/in/joseagomezrocha"
+              href="https://www.linkedin.com/in/jose-antonio-gomez-rocha/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-6 py-3 font-body text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"

@@ -28,7 +28,7 @@ const DownloadCTA = () => {
             Download Full CV (PDF)
           </a>
           <a
-            href="https://www.linkedin.com/in/joseagomezrocha"
+            href="https://www.linkedin.com/in/jose-antonio-gomez-rocha/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md border border-primary-foreground/20 px-8 py-3.5 font-body text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
